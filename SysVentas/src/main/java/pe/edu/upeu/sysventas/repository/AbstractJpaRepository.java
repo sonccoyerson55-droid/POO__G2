@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractJpaRepository<T, ID>
-        implements ICrudGenericoRepository<T, ID> {
+public abstract class AbstractJpaRepository<T,ID>
+        implements ICrudGenericoRepository<T,ID>{
 
     protected final List<T> data=new ArrayList<>();
 
@@ -13,13 +13,14 @@ public abstract class AbstractJpaRepository<T, ID>
     protected abstract void setId(T entity, ID id);
     protected abstract ID generateId();
 
+
     @Override
     public T save(T entity) {
-        if (getId(entity)==null){
+        if(getId(entity)==null){
             setId(entity,generateId());
         }
         data.add(entity);
-        return null;
+        return entity;
     }
 
     @Override
@@ -27,17 +28,16 @@ public abstract class AbstractJpaRepository<T, ID>
         ID id=getId(entity);
         for (int i=0;i<data.size();i++){
             T item=data.get(i);
-            if (data.get(i).equals(id)){
+            if(getId(item).equals(id)){
                 data.set(i,entity);
                 return entity;
             }
         }
-        throw new RuntimeException("No se encontro la entidad con el ID: "+id);
+        throw  new RuntimeException("No se encontro la entidad con el ID:"+id);
     }
 
     @Override
     public Optional<T> findById(ID id) {
-
         return data.stream()
                 .filter(entity->getId(entity).equals(id))
                 .findFirst();

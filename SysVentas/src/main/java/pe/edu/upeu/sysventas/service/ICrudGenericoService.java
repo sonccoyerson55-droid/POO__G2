@@ -8,6 +8,4 @@ public interface ICrudGenericoService<T, ID> {
     List<T> findAll();
     T findById(ID id);
     void delete(ID id);
-
-
 }

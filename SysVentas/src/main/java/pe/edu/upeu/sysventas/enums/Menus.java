@@ -1,9 +1,8 @@
 package pe.edu.upeu.sysventas.enums;
 
-
 public enum Menus {
     PRINCIPAL,
-    VENTA,
+    VENTAS,
     COMPRAS,
     CLIENTES,
     PRODUCTOS,

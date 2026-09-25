@@ -10,5 +10,4 @@ public interface ICrudGenericoRepository<T, ID> {
     List<T> findAll();
     void deleteById(ID id);
     boolean existsById(ID id);
-
 }
