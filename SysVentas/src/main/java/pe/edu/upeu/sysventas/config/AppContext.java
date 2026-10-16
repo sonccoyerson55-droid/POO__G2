@@ -55,6 +55,8 @@ public class AppContext {
 
         registrar(IUsuarioService.class, new UsuarioServiceImp(getBean(UsuarioRepository.class)));
 
+        registrar(IMenuMenuItemDao.class, new MenuMenuItemDaoImp());
+
     }
 
     // CAPA 3 — CONTROLADORES JavaFX
@@ -62,7 +64,7 @@ public class AppContext {
     // El FXMLLoader los busca aquí a través de setControllerFactory().
     private void registrarControladores() {
         //registrar(LoginController.class, new LoginController(getBean(IUsuarioService.class)));
-        registrar(MainGuiController.class, new MainGuiController());
+        registrar(MainGuiController.class, new MainGuiController(getBean(IMenuMenuItemDao.class)));
 
         registrar(ProductoController.class,
                 new ProductoController(
